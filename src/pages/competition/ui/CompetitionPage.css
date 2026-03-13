@@ -1,0 +1,202 @@
+/* Hero */
+.competition-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 80px 0 72px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.competition-hero__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.competition-hero__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.2;
+  animation: heroOrbFloat 10s ease-in-out infinite;
+}
+
+[data-theme='light'] .competition-hero__orb {
+  opacity: 0.1;
+}
+
+.competition-hero__orb--1 {
+  width: 600px;
+  height: 600px;
+  background: var(--color-primary);
+  top: -200px;
+  right: -100px;
+  animation-delay: 0s;
+}
+
+.competition-hero__orb--2 {
+  width: 400px;
+  height: 400px;
+  background: var(--color-accent);
+  bottom: -150px;
+  left: -80px;
+  animation-delay: -4s;
+}
+
+@keyframes heroOrbFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-20px); }
+}
+
+.competition-hero__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.competition-hero__eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.competition-hero__title {
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 900;
+  color: var(--color-text-primary);
+  letter-spacing: -2px;
+  line-height: 1;
+}
+
+.competition-hero__desc {
+  font-size: 17px;
+  color: var(--color-text-secondary);
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+.competition-hero__stats {
+  display: flex;
+  gap: 32px;
+  margin: 8px 0;
+}
+
+.competition-hero__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.competition-hero__stat-value {
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--color-primary);
+  text-shadow: 0 0 24px var(--color-primary-glow);
+  line-height: 1;
+}
+
+.competition-hero__stat-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+}
+
+/* Groups grid */
+.competition-groups {
+  padding: 20px 0 64px;
+}
+
+.competition-groups__title {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin-bottom: 32px;
+  letter-spacing: -0.3px;
+}
+
+.competition-groups__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.competition-group-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.competition-group-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 20px var(--color-primary-glow);
+  transform: translateY(-2px);
+}
+
+.competition-group-card__header {
+  padding: 12px 16px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  background: var(--color-surface-elevated);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.competition-group-card__teams {
+  padding: 8px 0;
+}
+
+.competition-group-card__team {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  font-size: 13px;
+  transition: background-color 0.15s ease;
+}
+
+.competition-group-card__team:hover {
+  background: var(--color-surface-elevated);
+}
+
+.competition-group-card__pos {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  width: 14px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.competition-group-card__name {
+  flex: 1;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.competition-group-card__team--advance .competition-group-card__name {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.competition-group-card__pts {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.competition-group-card__team--advance .competition-group-card__pts {
+  color: var(--color-primary);
+}

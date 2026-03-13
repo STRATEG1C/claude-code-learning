@@ -1,0 +1,110 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(13, 13, 20, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+[data-theme='light'] .header {
+  background: rgba(240, 242, 255, 0.85);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  height: 64px;
+}
+
+.header__logo {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--color-primary);
+  text-shadow: 0 0 16px var(--color-primary-glow);
+  letter-spacing: -0.5px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+}
+
+.header__link {
+  padding: 8px 16px;
+  border-radius: var(--border-radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  letter-spacing: 0.01em;
+}
+
+.header__link:hover {
+  color: var(--color-text-primary);
+  background: var(--color-surface-elevated);
+}
+
+.header__link--active {
+  color: var(--color-primary);
+  background: var(--color-primary-glow);
+}
+
+.header__link--active:hover {
+  color: var(--color-primary);
+  background: var(--color-primary-glow);
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.header__user {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.header__logout {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.header__logout:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  background: var(--color-accent-glow);
+}
+
+@media (max-width: 640px) {
+  .header__nav {
+    gap: 2px;
+  }
+
+  .header__link {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .header__user {
+    display: none;
+  }
+}

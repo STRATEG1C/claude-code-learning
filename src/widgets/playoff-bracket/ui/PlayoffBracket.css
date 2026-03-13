@@ -1,0 +1,137 @@
+.bracket {
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 16px;
+}
+
+.bracket__scroll {
+  display: flex;
+  gap: 0;
+  min-width: max-content;
+  align-items: flex-start;
+}
+
+/* Each round column */
+.bracket__round {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+}
+
+.bracket__round-label {
+  padding: 10px 16px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface-elevated);
+  white-space: nowrap;
+}
+
+.bracket__matches {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 12px 8px;
+  gap: 8px;
+  justify-content: space-around;
+}
+
+/* Vertical centering — each round has fewer matches, so space them out */
+.bracket__round:nth-child(1) .bracket__matches { gap: 6px; }
+.bracket__round:nth-child(2) .bracket__matches { gap: 16px; padding-top: 32px; }
+.bracket__round:nth-child(3) .bracket__matches { gap: 64px; padding-top: 80px; }
+.bracket__round:nth-child(4) .bracket__matches { gap: 96px; padding-top: 184px; }
+.bracket__round:nth-child(5) .bracket__matches { padding-top: 384px; }
+
+.bracket__match-slot {
+  position: relative;
+}
+
+/* Connector lines between rounds */
+.bracket__match-slot::after {
+  content: '';
+  position: absolute;
+  right: -8px;
+  top: 50%;
+  width: 8px;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.bracket__round:last-child .bracket__match-slot::after {
+  display: none;
+}
+
+/* Match card */
+.bracket-match {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  min-width: 184px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bracket-match--done {
+  border-color: var(--color-border);
+}
+
+.bracket-match:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 12px var(--color-primary-glow);
+}
+
+.bracket-match__team {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  gap: 8px;
+  transition: background-color 0.15s ease;
+}
+
+.bracket-match__team--winner {
+  background: rgba(0, 229, 255, 0.07);
+}
+
+[data-theme='light'] .bracket-match__team--winner {
+  background: rgba(21, 101, 192, 0.07);
+}
+
+.bracket-match__name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.bracket-match__team--winner .bracket-match__name {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.bracket-match__score {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  min-width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.bracket-match__team--winner .bracket-match__score {
+  color: var(--color-primary);
+}
+
+.bracket-match__divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: 0 10px;
+}

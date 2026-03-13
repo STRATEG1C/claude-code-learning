@@ -1,0 +1,134 @@
+.standings {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.standings__header {
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface-elevated);
+}
+
+.standings__title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--color-primary);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.standings__table-wrap {
+  overflow-x: auto;
+}
+
+.standings__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.standings__table thead th {
+  padding: 10px 12px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface-elevated);
+}
+
+.standings__table thead th.standings__col--team {
+  text-align: left;
+}
+
+.standings__table tbody td {
+  padding: 13px 12px;
+  text-align: center;
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color 0.15s ease;
+}
+
+.standings__table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.standings__table tbody tr:hover td {
+  background: var(--color-surface-elevated);
+}
+
+.standings__col--rank {
+  text-align: center !important;
+  color: var(--color-text-muted) !important;
+  font-size: 13px;
+  width: 36px;
+}
+
+.standings__col--team {
+  text-align: left !important;
+  font-weight: 600;
+  color: var(--color-text-primary) !important;
+  min-width: 120px;
+}
+
+.standings__col--pts {
+  font-weight: 700 !important;
+  color: var(--color-text-primary) !important;
+  font-size: 15px !important;
+}
+
+/* Top 2 rows — advancing teams */
+.standings__row--advance td {
+  border-left: none;
+}
+
+.standings__row--advance .standings__col--rank {
+  position: relative;
+}
+
+.standings__row--advance .standings__col--rank::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--color-success);
+  border-radius: 0 2px 2px 0;
+}
+
+.standings__row--advance .standings__col--team {
+  color: var(--color-text-primary) !important;
+}
+
+.standings__gd--pos {
+  color: var(--color-success) !important;
+  font-weight: 600;
+}
+
+.standings__gd--neg {
+  color: var(--color-accent) !important;
+}
+
+.standings__legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-border);
+}
+
+.standings__legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--color-success);
+  flex-shrink: 0;
+}
