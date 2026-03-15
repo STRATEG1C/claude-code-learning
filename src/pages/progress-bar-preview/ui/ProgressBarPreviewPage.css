@@ -1,0 +1,114 @@
+.pb-preview {
+  padding: 48px 24px;
+}
+
+.pb-preview__title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+}
+
+.pb-preview__desc {
+  color: var(--color-text-secondary);
+  margin-bottom: 48px;
+}
+
+.pb-preview__section {
+  margin-bottom: 48px;
+}
+
+.pb-preview__section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 24px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.pb-preview__stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 480px;
+}
+
+/* Match stats card */
+.pb-preview__card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  padding: 28px;
+  max-width: 560px;
+  box-shadow: var(--shadow-card);
+}
+
+.pb-preview__match-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.pb-preview__team {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.pb-preview__vs {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.pb-preview__stats {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pb-preview__stat-row {
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  gap: 12px;
+}
+
+.pb-preview__stat-bar-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pb-preview__stat-name {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.pb-preview__dual-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pb-preview__stat-val {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.pb-preview__stat-val--left {
+  text-align: right;
+}
+
+.pb-preview__stat-val--right {
+  text-align: left;
+}

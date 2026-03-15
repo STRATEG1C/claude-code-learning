@@ -5,66 +5,79 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-npm run dev       # Start dev server with HMR at http://localhost:5173
-npm run build     # Type-check (tsc -b) then build for production
-npm run lint      # Run ESLint
-npm run preview   # Preview the production build locally
+npm run dev       # Start Vite dev server with HMR
+npm run build     # Type-check (tsc -b) then production build
+npm run lint      # Run ESLint on all files
+npm run preview   # Preview production build locally
 ```
 
 There are no tests configured in this project.
 
-## Stack
-
-- **React 19** + **TypeScript 5.9** + **Vite 8** + **React Router 7**
-- ESLint 9 flat config with `typescript-eslint`, `eslint-plugin-react-hooks`, `eslint-plugin-react-refresh`
-- Plain CSS with custom properties for theming (no Tailwind, no CSS-in-JS)
-
 ## Architecture
 
-Feature-Sliced Design (FSD). Entry: `index.html` → `src/main.tsx` → `src/app/App.tsx`.
-
-### Layer order (each layer may only import from layers below it)
+This project uses **Feature-Sliced Design (FSD)** — a strict layered architecture where upper layers can import from lower layers but not vice versa:
 
 ```
 app → pages → widgets → features → entities → shared
 ```
 
-### Key locations
+**Layer responsibilities:**
 
-- `src/app/` — providers (Theme, Auth), router, global CSS (`styles/global.css`, `styles/variables.css`)
-- `src/pages/` — LoginPage, CompetitionPage, GroupPage, PlayoffPage
-- `src/widgets/` — Header, GroupStandings, PlayoffBracket
-- `src/features/` — `auth/` (LoginForm, AuthContext), `theme/` (ThemeSwitcher, ThemeContext), `apply-team/` (ApplyForm)
-- `src/entities/` — `group/` (types + mockData), `match/` (types + mockData), `team/` (types)
-- `src/shared/` — `ui/` (Button, Input, Modal, Badge), `lib/hooks/` (useAuth, useTheme), `config/routes.ts`
+- `src/app/` — Root providers (`ThemeProvider`, `AuthProvider`), router, and global styles/CSS variables
+- `src/pages/` — One component per route; assembles widgets
+- `src/widgets/` — Large standalone UI sections (e.g. `Header`, `GroupStandings`, `PlayoffBracket`)
+- `src/features/` — Stateful behaviors: `auth/` (context + login form), `theme/` (context + switcher)
+- `src/entities/` — Domain types and mock data: `match/`, `group/`, `team/`
+- `src/shared/` — Primitives reusable anywhere: `ui/` components, `config/routes.ts`, `lib/hooks/`
 
-### Theming
+## Routing
 
-`ThemeContext` in `src/features/theme/model/themeContext.tsx` manages dark/light mode. It sets `data-theme` on `<html>` and persists to localStorage (`fc-theme`). CSS variables are defined in `variables.css` with a `[data-theme='light']` override block.
+Route constants live in `src/shared/config/routes.ts`. The router is in `src/app/router/AppRouter.tsx` and uses a `ProtectedRoute` wrapper that redirects unauthenticated users to `/login`.
 
-### Auth
+**Whenever a new page is added under `src/pages/`, also add a `<NavLink>` for it in `src/widgets/header/ui/Header.tsx`.**
 
-Mock only — `admin`/`admin` credentials hardcoded in `AuthContext`. Protected routes redirect to `/login` when unauthenticated.
+## Styling
 
-### Mock data
+Global CSS custom properties (design tokens) are defined in `src/app/styles/variables.css`. The dark theme is the default; light theme overrides use `[data-theme='light']` on `document.documentElement`. Theme preference is persisted to `localStorage` under the key `fc-theme`.
 
-All data is static mock data in entity model files. No backend or API calls.
+Each component has a co-located `.css` file.
 
-### Page layout pattern
+## Documentation
 
-Pages use a two-div pattern to avoid padding conflicts with `.container`:
-```tsx
-<div className="page__content">   {/* owns vertical padding */}
-  <div className="container">     {/* owns horizontal padding + max-width */}
-    ...
-  </div>
-</div>
+When implementing features that use a library or framework, use Context7 MCP to fetch current documentation before writing code:
+
+1. Call `resolve-library-id` with the library name and the task
+2. Call `query-docs` with the resolved library ID and the specific question
+
+## Code Style
+
+Always write control flow blocks with curly braces and the body on a new line:
+
+```ts
+// correct
+if (condition) {
+  statement;
+}
+
+// wrong
+if (condition) statement;
 ```
 
-### Rules
+Separate each statement or block inside `{}` with a blank line (except before the closing brace):
 
-- When adding a new page, always add a `<NavLink>` for it in `src/widgets/header/ui/Header.tsx`.
-- Form state uses a single state object for all fields and a matching errors object (one key per field).
-- Use `React.SyntheticEvent<HTMLFormElement>` for form submit handlers (not `React.FormEvent` — deprecated).
-- Always use multi-line curly brace blocks for control flow — body on its own line, never inline: `if (x) { \n  y; \n }`.
-- Inside any `{}` block, separate each statement/block with an empty line, except the last one before the closing brace.
+```ts
+const fn = () => {
+  const x = 1;
+
+  if (condition) {
+    doSomething();
+  }
+
+  doSomethingElse();
+};
+```
+
+## Review the Work
+
+- **Invoke the ui-ui-reviewer subagent** to review your work and implement suggestions where needed
+- Iterate on the review process when needed

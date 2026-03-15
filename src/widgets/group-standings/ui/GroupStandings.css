@@ -76,6 +76,12 @@
   min-width: 120px;
 }
 
+.standings__table tbody td.standings__col--team {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .standings__col--pts {
   font-weight: 700 !important;
   color: var(--color-text-primary) !important;

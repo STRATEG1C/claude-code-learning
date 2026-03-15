@@ -1,4 +1,5 @@
 import type { Group } from '../../../entities/group/model/types';
+import { Avatar } from '../../../shared/ui/Avatar/Avatar';
 import './GroupStandings.css';
 
 export function GroupStandings({ group }: { group: Group }) {
@@ -30,7 +31,10 @@ export function GroupStandings({ group }: { group: Group }) {
                 className={`standings__row ${idx < 2 ? 'standings__row--advance' : ''}`}
               >
                 <td className="standings__col--rank">{idx + 1}</td>
-                <td className="standings__col--team">{row.teamName}</td>
+                <td className="standings__col--team">
+                  <Avatar name={row.teamName} size="sm" />
+                  {row.teamName}
+                </td>
                 <td>{row.played}</td>
                 <td>{row.won}</td>
                 <td>{row.drawn}</td>

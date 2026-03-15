@@ -1,0 +1,167 @@
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* Vertical spine */
+.timeline__spine {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--color-border);
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+/* ── Milestone rows ──────────────────────────────────────── */
+.timeline__milestone {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  margin: 12px 0;
+  border-radius: var(--border-radius-md);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.timeline__milestone--kickoff,
+.timeline__milestone--fulltime {
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+}
+
+.timeline__milestone--kickoff .timeline__milestone-label,
+.timeline__milestone--fulltime .timeline__milestone-label {
+  color: var(--color-primary);
+}
+
+.timeline__milestone--halftime {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  flex-direction: column;
+  gap: 2px;
+  text-align: center;
+}
+
+.timeline__milestone--halftime .timeline__milestone-label {
+  color: var(--color-text-secondary);
+  font-size: 11px;
+}
+
+.timeline__milestone-break {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--color-text-muted);
+  text-transform: none;
+}
+
+.timeline__milestone-time {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Event rows ──────────────────────────────────────────── */
+.timeline__event {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 56px 1fr;
+  align-items: center;
+  min-height: 40px;
+  padding: 4px 0;
+}
+
+.timeline__event-side {
+  display: flex;
+  align-items: center;
+}
+
+.timeline__event-side--home {
+  justify-content: flex-end;
+  padding-right: 12px;
+}
+
+.timeline__event-side--away {
+  justify-content: flex-start;
+  padding-left: 12px;
+}
+
+.timeline__event-content {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 220px;
+}
+
+.timeline__event-side--home .timeline__event-content {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.timeline__event-side--away .timeline__event-content {
+  flex-direction: row;
+  text-align: left;
+}
+
+.timeline__event-icon {
+  font-size: 16px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.timeline__event-detail {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  line-height: 1.3;
+}
+
+/* Minute bubble */
+.timeline__event-minute {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline__minute-bubble {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  padding: 3px 6px;
+  border-radius: 20px;
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Goal events get a highlighted minute */
+.timeline__event--home .timeline__minute-bubble,
+.timeline__event--away .timeline__minute-bubble {
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Separate goal events visually */
+.timeline__event + .timeline__event {
+  border-top: 1px solid transparent;
+}

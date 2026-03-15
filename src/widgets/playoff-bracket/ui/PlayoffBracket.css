@@ -51,6 +51,18 @@
   position: relative;
 }
 
+.bracket__match-link {
+  display: block;
+  text-decoration: none;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+}
+
+.bracket__match-link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
 /* Connector lines between rounds */
 .bracket__match-slot::after {
   content: '';

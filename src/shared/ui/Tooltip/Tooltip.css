@@ -1,0 +1,110 @@
+.tooltip-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 1000;
+  padding: 6px 10px;
+  border-radius: var(--border-radius-sm);
+  background-color: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  white-space: nowrap;
+  box-shadow: var(--shadow-card);
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: tooltip-fade-in 0.15s ease;
+}
+
+@keyframes tooltip-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Arrow shared */
+.tooltip__arrow {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  transform: rotate(45deg);
+}
+
+/* Placement: top */
+.tooltip--top {
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip--top .tooltip__arrow {
+  bottom: -5px;
+  left: 50%;
+  margin-left: -4px;
+  border-top: none;
+  border-left: none;
+}
+
+/* Placement: bottom */
+.tooltip--bottom {
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip--bottom .tooltip__arrow {
+  top: -5px;
+  left: 50%;
+  margin-left: -4px;
+  border-bottom: none;
+  border-right: none;
+}
+
+/* Placement: left */
+.tooltip--left {
+  right: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  flex-direction: row;
+  align-items: center;
+}
+
+.tooltip--left .tooltip__arrow {
+  right: -5px;
+  top: 50%;
+  margin-top: -4px;
+  border-left: none;
+  border-bottom: none;
+}
+
+/* Placement: right */
+.tooltip--right {
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  flex-direction: row;
+  align-items: center;
+}
+
+.tooltip--right .tooltip__arrow {
+  left: -5px;
+  top: 50%;
+  margin-top: -4px;
+  border-right: none;
+  border-top: none;
+}
