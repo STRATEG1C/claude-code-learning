@@ -11,9 +11,9 @@ export function Header() {
   return (
     <header className="header">
       <div className="header__inner container">
-        <NavLink to={ROUTES.COMPETITION} className="header__logo">
+        <div className="header__logo">
           ⚽ FC
-        </NavLink>
+        </div>
 
         <nav className="header__nav">
           <NavLink
