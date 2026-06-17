@@ -4,6 +4,8 @@ import { AuthProvider } from '../features/auth/model/authContext';
 import { AppRouter } from './router/AppRouter';
 import './styles/global.css';
 
+var a;
+
 export function App() {
   return (
     <ThemeProvider>
